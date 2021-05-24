@@ -1,0 +1,36 @@
+<html>
+<head>
+    <title>SystemJS example with moment.js</title>
+    <meta charset="UTF-8">
+
+    <script src="node_modules/systemjs/dist/system.js"></script>
+
+    <script>
+        SystemJS.config({
+            map: {
+                'traceur': 'node_modules/traceur/bin/traceur.js',
+                'moment': 'node_modules/moment/src'
+            },
+            packages: {
+                'moment': {
+                    main: 'moment.js'
+                }
+            }
+        });
+
+        SystemJS.import('./test.js')
+                .then(function(test) {
+                    var t = test.test();
+                    document.body.appendChild(
+                        document.createTextNode(t)
+                    );
+                })
+                .catch(function(e) {
+                    console.error(e)
+                });
+
+    </script>
+</head>
+<body>
+</body>
+</html>
